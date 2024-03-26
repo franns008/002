@@ -1,15 +1,30 @@
 package bibliotecaB;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.json.simple.*;
 
 public class JsonAdapter extends VoorheesExporter{
-	private JSONObject json;
+	private JSONArray jsona;
 	
-	public JsonAdapter(JSONObject json) {
-		this.json = json;
+	public JsonAdapter(JSONArray json) {
+		this.jsona = json;
 		
 	}
 	
-	@Override 
+	private JSONObject privado(Socio socio) {
+		JSONObject jsono = new JSONObject();
+		jsono.put("nombre",socio.getNombre());
+		jsono.put("legajo",socio.getLegajo());
+		jsono.put("email",socio.getEmail());
+		return jsono;
+	}
+	@Override
+	public String exportar(List<Socio> socios) {
+		socios.stream()
+		.forEach(s -> jsona.add(this.privado(s)));
+		return jsona.toJSONString();
+	}
 }
 
