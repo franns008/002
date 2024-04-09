@@ -7,10 +7,6 @@ public class Agua implements Topologia {
 	}
 	
 	public boolean equals(Topologia t) {
-		if (t.proporcionAgua()== 1) {
-			return true;
-		}else {
-			return false;
-		}
+		return t.proporcionAgua() == 1;
 	}
 }

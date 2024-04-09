@@ -25,18 +25,26 @@ public class Mixto implements Topologia{
 		return this.componentes.get(i);
 	}
 	
-	public boolean equals (Topologia t) {
-		if(t.proporcionAgua() == this.proporcionAgua()) { 
-			 Mixto mixto = (Mixto) t; 
-			for (int i = 0; i < componentes.size(); i++) { //Consultar una mejor forma
-	            if (!componentes.get(i).equals(mixto.ObtenerComponente(i))) {
-	                return false;
+	public boolean equals (Agua a) {
+		return false;
+	}
+	
+	public boolean equals (Tierra t) {
+		return false;
+	}
+	
+	public boolean equals (Mixto t) {
+			for (int i = 0; i < componentes.size(); i++) { 
+	            if(!t.ObtenerComponente(i).equals(this.componentes.get(i))) {
+	            	return false;
 	            }
 	        }
 			return true;
 			
-		}else {
-			return false;
-		}
+	}
+
+	@Override
+	public boolean equals(Topologia t) {
+		return t.equals(this);
 	}
 }

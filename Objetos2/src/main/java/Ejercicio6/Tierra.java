@@ -8,11 +8,7 @@ public class Tierra implements Topologia{
 
 
 	public boolean equals(Topologia t) {
-		if (t.proporcionAgua()== 0) {
-			return true;
-		}else {
-			return false;
-		}
+		return t.proporcionAgua() == 0;
 	}
 	
 }
