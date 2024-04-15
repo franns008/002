@@ -24,14 +24,24 @@ public class Directorio extends Dato{
 	@Override
 	public Archivo masGrande() {
 		return this.datos.stream()
-				.map(d1 -> d1.masGrande()).sorted((d1,d2) -> Double.compare(d2.calcularTamaño(), d1.calcularTamaño()))
-				.findFirst()
+				.map(d1 -> d1.masGrande())
+				.max((d1,d2) -> Double.compare(d1.calcularTamaño(), d2.calcularTamaño()))
 				.orElse(null);
 	}
 	
 	public Archivo masNuevo() {
 		return this.datos.stream()
 				.map(d -> d.masNuevo())
-				.sorted((d1,d2) -> ChronoUnit.)
+				.sorted((dato1, dato2) -> dato2.getFechaCreacion().compareTo(dato1.getFechaCreacion()))
+				.findAny()
+				.orElse(null);
+	}
+	
+	public Dato buscarNombre(String n) {
+		return this.datos.stream()
+				.map(d -> d.buscarNombre(n))
+				.filter(Objects::nonNull)
+				.findFirst()
+				.orElse(null);
 	}
 }

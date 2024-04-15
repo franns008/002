@@ -24,4 +24,11 @@ public class Archivo extends Dato{
 		return this;
 	}
 	
+	public Dato buscarNombre(String n) {
+		if(this.miNombre(n)) {
+			return this;
+		}else {
+			return null;
+		}
+	}
 }

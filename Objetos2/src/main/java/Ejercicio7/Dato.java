@@ -13,10 +13,19 @@ public abstract class Dato {
 	public String getNombre() {
 		return "/"+this.getNombre();
 	}
+	public LocalDate getFechaCreacion() {
+		return this.fechaCreacion;
+	}
+
+	public boolean miNombre(String n) {
+		return this.nombre==n;
+	}
 	
 	public abstract double calcularTamaño();
 	
 	public abstract Archivo masGrande();
 
 	public abstract Archivo masNuevo();
+	
+	public abstract Dato buscarNombre(String n);
 }
