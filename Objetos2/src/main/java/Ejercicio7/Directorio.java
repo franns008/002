@@ -25,6 +25,7 @@ public class Directorio extends Dato{
 	public Archivo masGrande() {
 		return this.datos.stream()
 				.map(d1 -> d1.masGrande())
+				.filter(d1 -> d1 != null)
 				.max((d1,d2) -> Double.compare(d1.calcularTamaño(), d2.calcularTamaño()))
 				.orElse(null);
 	}
