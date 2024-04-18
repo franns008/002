@@ -5,6 +5,10 @@ public class Confirmado extends Estado{
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void modificarMargen(double margen) {
+		
+	}
 	public void aprobarEtapa() {
 		
 	}

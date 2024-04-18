@@ -15,6 +15,6 @@ public abstract class Estado {
 	
 	public abstract void aprobarEtapa();
 	
-	public abstract void modificarMargen((double margen);
+	public abstract void modificarMargen(double margen);
 	
 }

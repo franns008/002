@@ -7,6 +7,10 @@ public class Cancelado extends Estado{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void modificarMargen(double margen) {
+		
+	}
+	
 	public void aprobarEtapa() {
 		
 	}

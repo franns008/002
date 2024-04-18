@@ -14,7 +14,7 @@ public class Proyecto {
 	private double montoIntegranteDia;
 	
 		
-	public Proyecto(Estado e, String nombre, LocalDate fechaIni, LocalDate fechaFin, String objetivo, double margenG,
+	public Proyecto(String nombre, LocalDate fechaIni, LocalDate fechaFin, String objetivo,
 			int numIntegrantes, double montoIntegranteDia) {
 		super();
 		this.e = new EnConstruccion(this);;
@@ -22,7 +22,7 @@ public class Proyecto {
 		this.fechaIni = fechaIni;
 		this.fechaFin = fechaFin;
 		this.objetivo = objetivo;
-		this.margenG = margenG;
+		this.margenG = 0.07;
 		this.numIntegrantes = numIntegrantes;
 		this.montoIntegranteDia = montoIntegranteDia;
 	}
@@ -40,7 +40,7 @@ public class Proyecto {
 	}
 	
 	public double precioProyecto() {
-		return this.costoProyecto()* this.margenG;
+		return (this.costoProyecto()+(this.costoProyecto()* this.margenG));
 	}
 	
 	public void modificarMargen(double margen) {
@@ -57,6 +57,14 @@ public class Proyecto {
 
 	public void setObjetivo(String objetivo) {
 		this.objetivo = objetivo;
+	}
+	
+	public void cambiarMargen(double m) {
+		this.margenG = m;
+	}
+	
+	public Estado getEtapa() {
+		return this.e;
 	}
 	
 }
