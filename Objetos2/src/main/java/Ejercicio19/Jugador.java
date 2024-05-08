@@ -2,22 +2,25 @@ package Ejercicio19;
 
 public class Jugador {
 
-	public BuilderPersonaje creador;
+	private Director director;
 	
-	public Jugador( BuilderPersonaje c) {
-		this.creador = c;
+	public Jugador( Director d) {
+		this.director = d;
 	}
 	
 	public Personaje crearArquero() {
-		return null;
+		 this.director.cambiarBuilder(new ArqueroCreator());
+		 return this.director.crear();
 	}
 	
 	public Personaje crearLuchador() {
-		return null;
+		 this.director.cambiarBuilder(new LuchadorCreator());
+		 return this.director.crear();
 	}
 	
 	
 	public Personaje crearMago() {
-		return null;
+		 this.director.cambiarBuilder(new MagoCreator());
+		 return this.director.crear();
 	}
 }

@@ -13,7 +13,11 @@ public class Director {
 	}
 	
 	public Personaje crear() {
-		
-		return null;
+		this.builder.reset();
+		this.builder.equiparArma();
+		this.builder.equiparArmadura();
+		this.builder.equiparHabilidad();
+		this.builder.indicarVida();
+		return builder.make();
 	}
 }
