@@ -5,14 +5,13 @@ import java.time.*;
 
 
 public class Vuelo {
-	protected ArrayList<Tramo> tramos;
-	protected ArrayList<String> dias;
+	protected String origen;
+	protected String destino;
 	protected LocalDateTime horaSalida;
 	protected Duration duracion;
-	public Vuelo(LocalDateTime horaSalida, Duration duracion) {
-		super();
-		this.tramos = new ArrayList();
-		this.dias = new ArrayList();
+	public Vuelo(String origen, String destino,LocalDateTime horaSalida, Duration duracion) {
+		this.destino=destino;
+		this.origen=origen;
 		this.horaSalida = horaSalida;
 		this.duracion = duracion;
 	}
@@ -20,4 +19,14 @@ public class Vuelo {
 	public LocalDateTime horaLLegada() {
 		return this.horaSalida.plus(this.duracion);	
 	}
+
+	public String getOrigen() {
+		return origen;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+	
+	
 }

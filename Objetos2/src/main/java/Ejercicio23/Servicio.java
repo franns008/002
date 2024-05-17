@@ -1,69 +1,48 @@
 package Ejercicio23;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Map;
 
-public class Servicio extends Vuelo {
+public abstract class Servicio {
+	protected LocalDate dia;
+	protected double costoBase;
+	protected Map<String,Double> diario;
+	protected ArrayList<Ticket> tickets;
+	private Pasajero pasajero;
 	
-	private LocalDate dia;
-	private LocalDateTime horaRealSalida;
-	private int asientosUtilizados;
-	private Configuracion avion;
-	public Servicio(LocalDateTime horaSalida, Duration duracion,
-			LocalDate dia, LocalDateTime horaRealSalida, Configuracion avion) {
-		super(horaSalida, duracion);
-		this.dia = dia;
-		this.horaRealSalida = horaRealSalida;
-		this.asientosUtilizados = 0;
-		this.avion = avion;
+	public Servicio(ArrayList<Ticket> tickets,Pasajero pasajero, double costoBase) {
+		this.costoBase = costoBase;
+		this.tickets =tickets;
+		this.pasajero = pasajero;
+		this.dia= LocalDate.now();
+		diario.put("Monday", 1.0);
+        diario.put("Tuesday", 1.01);
+        diario.put("Wednesday", 0.99);
+        diario.put("Thursday", 0.95);
+        diario.put("Friday", 1.0);
+        diario.put("Saturday", 1.01);
+        diario.put("Sunday", 1.01);
+        dia=LocalDate.now();
 	}
 	
-	
-	public boolean reservarAsiento(int cant) {
-		if(this.avion.hayLugar(cant+this.asientosUtilizados)) {
-			this.asientosUtilizados+=cant;
-			return true;
+	public double multiHop() {
+		if(this.tickets.size()>3) {
+			return 0.93;
 		}else {
-			return false; // Aca puede ir un null object 
+			return 1;
 		}
 	}
 	
-	public int horasDeVuelo(String modelo) {
-		if(avion.soyEse(modelo)) {
-			return this.duracion.toHoursPart();
-		}else {
-			return 0;
-		}
-			
+	public double rateDiario() {
+		return this.diario.get(dia.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
 	}
 	
-	public int horasDeVueloFecha(String modelo,LocalDate diaIni,LocalDate diaFin) {
-		if((this.dia.isAfter(diaIni) || this.dia.isEqual(diaIni) || this.dia.isBefore(diaFin)
-				|| this.dia.isEqual(diaFin))&& this.avion.soyEse(modelo) ) {
-			return this.duracion.toHoursPart();
-		}else {
-			return 0;
-		}
-			
+	public double getCostoBase() {
+		return this.costoBase;
 	}
 	
-	public int cantTramos() {
-		return this.tramos.size();
-	}
-	
-	public LocalDateTime horaEstimadaSalida() {
-		return this.horaSalida;
-	}
-	
-	public LocalDateTime horaLLegada() {
-		return this.horaRealSalida.plus(this.duracion);	
-	}
-	
-	public Duration duracion() {
-		return this.duracion;
-	}
-	
-	public double getPromedioOcupacion() {
-		return this.asientosUtilizados/this.avion.getCapacidad();
-	}
+	public abstract double costoServicio();
 }

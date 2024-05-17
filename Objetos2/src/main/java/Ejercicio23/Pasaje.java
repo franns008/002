@@ -1,42 +1,32 @@
 package Ejercicio23;
 
+import java.time.*;
+import java.time.format.TextStyle;
 import java.util.*;
 
-public class Pasaje {
-	private Pasajero pasajero;
-	private ArrayList<Servicio> vuelo;
+public class Pasaje extends Servicio{
+	private LocalDate dia;
+
 	private ArrayList asiento;
-	private double costoBase;
+
 	
-	public Pasaje(Pasajero pasajero, ArrayList<Servicio> vuelo, ArrayList asiento, double costo) {
-		super();
-		this.pasajero=pasajero;
-		this.vuelo = vuelo;
+	public Pasaje(Pasajero pasajero, ArrayList<Ticket> tickets, 
+			double costoBase, ArrayList asiento) {
+		super(tickets,pasajero,costoBase);
 		this.asiento = asiento;
-		this.costoBase =costo;
 	}
 	
-	public double multiHop() {
-		return 1; // preguntar que onda con esto tambien 
-	}
-	
-	public double rateDiario() {
-		return 1;   //preguntar que onda con esto
-	}
 	
 	public double rateRoundTrip() {
-		if((this.vuelo.stream() .mapToInt(v -> v.cantTramos()).sum())>3) {
-			return 0.93;
+		if(this.tickets.get(this.tickets.size())
+				.mismoDestino(this.tickets.get(0).getCiudadOrigen())) {
+			return 0.95;
 		}else {
 			return 1;
 		}
 	}
 	
-	public double getCostoBase() {
-		return this.costoBase;
-	}
-	
-	public double costoPasaje() {
+	public double costoServicio() {
 		return this.costoBase*this.multiHop()*this.rateDiario()*this.rateRoundTrip();
 	}
 }
